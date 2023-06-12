@@ -1,0 +1,6 @@
+- Copia la riga su cui attualmente sei senza selezionare tutto il testo tramite `ctrl-c`
+- Posiziona il cursore su tutte le occorrenze di una parola su cui il cursore si trova attraverso `ctrl-shift-l`
+- Seleziona più linee tramite `shift-alt-up arrow/down arrow`
+- Sposta una linea di codice tramire `alt-up arrow/down arrow`
+- Cancella una linea di codice tramite `ctrl-shift-k`
+- Premi F2 per effettuare il refactor di una parola

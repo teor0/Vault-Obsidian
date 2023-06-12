@@ -1,0 +1,8 @@
+-   **follow urls** `alt-l`
+-   **copy urls**  `alt-y`
+-   **copy the output of commands**  `alt-o`
+-   **scrollback** with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the mouse.
+-   OR **vim-bindings**: scroll up in history`alt-k`   scroll down in history`alt-j`. Faster with `alt-u`/`alt-d`.
+-   **zoom/change font size**:   `alt-shitf-k` zoom in `alt-shitf-j` zoom out`alt-home` default
+-   **copy text** with `alt-c`, **paste** is `alt-v` or `shift-insert`
+-  per cambiare i colori tramite Xresource, eseguire `xrdb .XResource`
