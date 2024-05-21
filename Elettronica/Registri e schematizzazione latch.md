@@ -8,7 +8,7 @@ updated: 2023-04-20 12:08:03
 # Registri
 Si consideri ora un Ripple carry adder a 16 bit,
 ![[rcareal.jpg|650x400]]
-non è possibile stabilire in modo deterministico quando la somma assume un valore corretto senza utilizzare circuiti sequenziali, perché il ritardo con cui il circuito sommatore risponde alle sollecitazioni degli ingressi non è costante. L'obiettivo è perciò quello di garantire che gli ingressi A e B arrivino contemporaneamente. È necessario che dopo l'arrivo degli ingressi, si attendi un ritardo prima di leggere il risultato. Tale ritardo, è $\tau_d=\tau_{Max}$ dove $\tau_{Max}$ è detto <font color=red>worst case delay</font> e nel caso del ripple carry adder concide con $16\times \tau_{FA}$, 17 se nel caso di operandi con segno. 
+non è possibile stabilire in modo deterministico quando la somma assume un valore corretto senza utilizzare circuiti sequenziali, perché il ritardo con cui il circuito sommatore risponde alle sollecitazioni degli ingressi non è costante. L'obiettivo è perciò quello di garantire che gli ingressi A e B arrivino contemporaneamente. È necessario che dopo l'arrivo degli ingressi, si attendi un ritardo prima di leggere il risultato. Tale ritardo, è $\tau_d=\tau_{Max}$ dove $\tau_{Max}$ è detto <font color=red>worst case delay</font> e nel caso del ripple carry adder coincide con $16\times \tau_{FA}$, 17 se nel caso di operandi con segno. 
 Se ad esempio temporizzo attraverso flip flop, l'arrivo degli ingressi con un fronte di salita e con un altro fronte di salita, la lettura del risultato, allora tra questi 2 eventi consecutivi deve passare un tempo $\tau_d$.
 
 > Usiamo come detto in precedenza circuiti sequenziali per mascherare variazioni inevitabili, date dai ritardi non nulli. La presenza della temporizzazione limita gli effetti negativi, in termini di dissipazione di potenza legati a queste variazioni non volute.
@@ -29,9 +29,9 @@ Per comprendere la necessità di questi tempi utilizziamo il seguente diagramma
 ![[setupnhold.jpg|400x500]]
 in questa situazione, essendo il clock un segnale non ideale con $t_r\neq 0$ (tempo di salita), l'evento a cui fare riferimento è tutto il fronte di salita. Durante questo intervallo di tempo D non è stabile. Si ha infatti ambiguità sul valore da campionare in quanto si identificano diversi valori di D. Non si ha certezza di identificare il valore di tensione corretto che rappresenta il valore logico del segnale. Analogo è il discorso se la variazione di D si ha nel tempo di hold.
 
->[!regola] Lo stato di indeterminazione in questione è rappresentato in VHDL con 'x' ed affinché non si verifichi è necessario che la cadenza con cui al mio circuito posso far arrivare fronti di salita attivi dipende da, $T=t_{wc}+\tau_{setup}$ cioè quanto tempo prima del fronte debba essere pronto il dato da campionare.
+>[!regola] Lo stato di indeterminazione in questione è rappresentato in VHDL con 'x' ed affinché non si verifichi è necessario che la cadenza con cui al circuito arrivano fronti di salita attivi dipende da $T=t_{wc}+\tau_{setup}$ cioè, quanto tempo prima del fronte debba essere pronto il dato da campionare. Dove $t_{wc}$ è il tempo del worst case delay. 
 
-Dove $t_{wc}$ è il tempo del worst case delay. Il vincolo è facilmente rispettabile data l'informazione nel data sheet.
+Il vincolo è facilmente rispettabile data l'informazione nel data sheet.
 
 ## Tipi di registri e metastabilità
 È possibile identificare 2 tipi di registri:

@@ -15,7 +15,6 @@ I vantaggi del VHDL sono:
 
 La sintesi è il processo di conversione del codice VHDL in elementi fisici specifici per hardware scelto. 
 
----
 # Elementi strutturali
 Il primo elemento è <font color=orange>l'entity</font> che serve a definire cosa riceve in ingresso e cosa produce in uscita la rete logica. È fondamentale quando si crea un'entity, specificare la direzione che assumono le porte che posso essere:
 - IN: segnale di sola lettura
@@ -108,8 +107,7 @@ architecture struct of RCA4 is
 Per questa implementazione si è usato l'approccio strutturale. Attraverso component si crea un collegamento con il modulo del full adder, riportando esattamente gli stessi nomi impiegati nella entity FULLADDER. Si fa poi un mapping tra le informazioni del componente e quelli dell'entity RCA4. Il fatto che $c1$ sia utilizzato come output prima e dopo input fa capire al sintetizzatore che bisogna utilizzare il segnale $c1$, ovvero che $c1$ è un collegamento vero.
 Le call vengono dette istanziazioni ed ogni istanza richiede una label.
 
----
-# Notazione ad array
+## Notazione ad array
 Supponiamo adesso di voler realizzare un ripple-carry a 16 bit, la mole di codice aumenta di molto e può risultare oneroso e complesso da scrivere. In aiuto ci viene la notazione vettoriale o array. Un array è un insieme di oggetti tutti dello stesso tipo definito tramite *Tipo array*\_Vector quindi esistono:  Boolean_Vector, Bit_Vector, Integer_Vector ecc. Uno degli aspetti fondamentali degli array è l'indicizzazione dei valori al suo interno che può essere crescente o decrescente. Ad esempio prendiamo A=$a_3,a_2,a_1,a_0$ posso implementare un bit_vector più intuitivo quale: `A(3 downto 0)` oppure `A(0 to 3)`.
 Supponiamo di dichiarare 2 array:
 ```VHDL
@@ -198,202 +196,12 @@ architecture struct of RCA4_v3 is:
 Per utilizzare for generate serve quindi una label, per identificare l'inizio e la fine del for. Lo statement generate serve a generare i componenti circuitali necessari. A livello circuitale $i$ è un elemento astratto utilizzato a supporto della scrittura del codice, non si ha necessità di dichiararla prima del utilizzo in quanto, utilizzarla al livello del for equivale ad una sua dichiarazione ed inoltre il compilatore si aspetta di trovare una variabile intera.
 
 L'attesa all'interno del codice VHDL è possibile attraverso `wait for t ns` con $t>0$. 
-
---- 
-# Variabili parametriche e If
+ 
+## Variabili parametriche e If
 Un circuito ovviamente è un qualcosa che va generalizzato e non specificato per 4 bit. In VHDL per utilizzare variabili parametriche si usa il costrutto `generic(n:integer:=8)`, dove $n$ è il nome della variabile, integer è il tipo ed 8 è il valore di default. Essendo generic interno al modulo component, all'interno di un test bench occorre riutilizzare il costrutto nell'entity vuota che sfrutta il test bench. Ulteriore passo è quello di utilizzare `generic map(n)` nel momento di mapping del circuito.
 In VHDL esiste anche `if condizione generate`, utile a distinguere tra diversi casi una condizione. Anche per l'if come per il for occorre utilizzare una label ad esempio `myIf` e terminarlo tramite `end generate`.
 
 ---
-# VHDL per circuiti sequenziali
-Nel realizzare circuiti sequenziali in VHDL, si fa riferimento allo statement <font color=purple>process</font>, statement concorrente che incapsula istruzioni sequenziali. La sintassi è la seguente:
-``` VHDL
-optional_label: process(sensitivity list)
-			 begin
-				[...]
-			end process [optional_label];
-```
-La sensitibity list, è una lista che contiene i segnali di ingresso o porte di ingresso, che in maniera diretta vanno ad influenzare lo stato di qualche altro segnale o di porte d'uscita. Una sensitivity list vuota corrisponde ad una sensitivity list contenente tutti i segnali e porte d'ingresso.
-All'interno del process si può utilizzare lo statement sequenziale <font color=orange>if then else</font>, uguale ad un if di Java, solo che in VHDL l'ordine corretto è importante in quanto influenza la sintesi. È importante coprire tutte le condizioni, per evitare che una condizione non coperta venga interpretata dal sintetizzatore come attivazione di una funzionalità di memoria. Esempio:
-``` VHDL
-process
-begin
-	if(a='0')then
-		b <= c and d;
-	else -- else ricopre tutti gli altri stati possibili STD_LOGIC non solo '1'
-	 b <= ((not c) and (not d));
-	end if;
-end process;
-```
-
-## Esempio latch positivo
-``` VHDL
-library IEEE;
-use IEEE.std_logic.1161.all;
-entity LP is
-	 port(D,Clk: in std_logic);
-	 port(Q: out std_logic);
-end LP;
-
-architecture behav of LP is
-	begin
-		process(D,Clk)
-		begin
-			if(Clk='1')then
-				Q <= D;
-			else
-				Q <= Q; -- modo per attivare la funzione di memoria
-			end if;
-		end process;
-end behav;
-```
-Come si sa il comportamento del latch è variabile in particolare:
-- Il clock influenza direttamente Q.
-- D influenza indirettamente Q.
-
-Individuare i segnali responsabili della variazione dell'uscita è importante per capire quali segnali devono essere inseriti nella sensitivity list e nel caso del latch sono sia D che Clk.
-Supponiamo di aggiungere al latch un clear asincrono attivo alto (ovvero se $clr='1'\implies Q='0'$),
-``` VHDL
-library IEEE;
-use IEEE.std_logic.1161.all;
-entity LP is
-	 port(D,Clk,Clr: in std_logic);
-	 port(Q: out std_logic);
-end LP;
-
-architecture behav of LP is
-	begin
-		process(D,Clk,Clr)
-		begin
-			if(Clr='1') then -- prima va verificato il clear!
-				Q <= '0';
-			else (Clk='1')
-				Q <= D; 
-			end if;
-		end process;
-end behav;
-```
-il clear influenza direttamente Q perciò va nella sensitivity list, inoltre la condizione da verificare sul clear è prioritaria (come già detto) rispetto a quella sul clock, quindi è la prima condizione da verificare.
-
-## Esempio flip flop
-Il flip flop ha un comportamento diverso dal latch in quanto, gli eventi che consentono il trasferimento dell'ingresso sull'uscita, sono molto selettivi ovvero i fronti di salita o discesa e non il periodo intero in cui il clock è alto o basso. Considerato ciò possiamo dire che solo il clock influenza direttamente il valore di Q e D non lo influenza affatto.
-```VHDL
-library IEEE;
-use IEEE.std_logic.1161.all;
-entity FF is
-	port(D,Clk: in std_logic);
-	port(Q: out std_logic);
-end FF;
-
-architecture behav of FF is
-begin
-	process(Clk)
-	begin
-		if(rising_edge(Clk)) then -- istruzione che discrimine un fronte di salita
-			Q <= D;
-		end if;
-	end process;
-end behav;
-```
-È possibile inserire anche per il flip flop un segnale di clear e preset, in particolare si ipotizza di utilizzare il preset attivo alto ed il clear attivo basso asincroni, su un flip flop sensibile a fronti di discesa del clock.
-```VHDL
-library IEEE;
-use IEEE.std_logic.1161.all;
-entity FF is
-	port(D,Clk: in std_logic);
-	port(Q: out std_logic);
-end FF;
-
-architecture behav of FF is
-begin
-	process(Clk,Pr,Clr)
-	begin
-		if(Pr='1') then 
-			Q <= '1';
-		elsif(Clr='0') then
-			Q <= '0';
-		elsif falling_edge(Clk) then 
-			Q <= D;
-		end if;
-	end process;
-end behav;
-```
-L'ordine tra preset e clear è arbitrario, in quanto hanno stessa priorità se sono asincroni mentre sincroni sono errati in partenza.
-
-Esiste anche la versione sincrona con il segnale di clock di preset e clear ovvero reset e set. Se ho un flip flop sensibile a fronti di salita allora anche il reset si attiverà quando il clock è alto. Il process associato al reset sincrono:
-```VHDL
-process(Clk)
-begin 
-	if rising_edge(Clk) then
-		if(reset='1') then
-			Q <='0';
-		elsif(reset='0') then
-			Q <= D;
-		end if;
-	end if;
-end process;
-```
-a differenza del preset, nel reset si controlla che il clock sia alto e dopo il valore di reset mentre con il preset si controlla prima il suo valore e poi quello del clock. Per quanto riguarda set:
-```VHDL
-process(Clk)
-begin 
-	if rising_edge(Clk) then
-		if(set='1') then
-			Q <='1';
-		elsif(set='0') then
-			Q <= D;
-		end if;
-	end if;
-end process;
-```
-Per quanto riguarda i flip flop non ha molto senso utilizzare la descrizione gerarchica con for generate, ma meglio usare una behavioural come visto nei precedenti esempi.
-
----
-# Test bench per circuiti sequenziali
-Supponiamo di voler fare un test bench per un registro a 8 flip flop, per la realizzazione del test bench supponiamo che:
-- $T=10ns$ ovvero il periodo tra un fronte di salita ed un altro.
-- Duty cicle a 50% (default Vivado), che indica quanto in % sul periodo totale di clock perdura lo stato alto.
-- $t_{setup}=2ns$ e $t_{hold}=2ns$
-
-Date queste supposizioni avremo:
-![[tbcircseq.jpg|400x500]]
-la variazione di D non può coincidere con la variazione del clock altrimenti non si rispetterebbero i tempi di setup e hold. Il codice per il test bench sarà:
-```VHDL
-library IEEE;
-use IEEE.std_logic.1164.all;
-entity SimR8 is
-end SimR8;   -- vuota in quanto non si usano generic
-
-architecture BenchSim of SimR8 is
-	component Reg8
-		port(D: in std_logic_vector(7 downto 0);
-			Clk: in std_logic;
-			Q: out std_logic_vector(7 downto 0));
-	end component;
-signal ID,OQ: std_logic_vector(7 downto 0);
-signal IClk: std_logic:='0'; --inizializzazione clock a 0
-
-begin 
-	circ: Reg8 port map(ID,IClk,OQ);
-	process
-	begin --t=0
-		wait for 5ns;
-		IClk <= not IClk;
-	end process;
-	process 
-	begin 
-		ID <= (others=>'0')
-		wait for 7ns;
-		ID <= '00001111';
-		wait for 10ns;
-		ID <= '11111111';
-	end process;
-end BenchSim;
-```
-Al clock si dedica un process a parte per il timing, quindi si avranno 2 process concorrenti fra loro uno per il clock ed uno per i segnali che tengono conto dei tempi supposti.
-
----
-
 
 
 

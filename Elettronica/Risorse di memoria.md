@@ -21,12 +21,12 @@ Descriviamo adesso le configurazioni di memoria ROM più commerciali:
 
 La dual port si usa per massimizzare la velocità d'accesso e ridurre i tempi complessivi.
 Descriviamo poi le configurazioni di memoria RAM più commerciali che presentano segnali per la scrittura dei dati.
-- Single port, dove troviamo l'indirizzo, il segnale DINA (Data In) che rappresenta il dato da scrivere in ingresso, il segnale di abilitazione per la scrittura e lettura WEA, che se pari a 1 abilita la scrittura e se pari a 0 abilita la lettura. ![[ramsingleport.jpg]]
+- Single port, dove troviamo l'indirizzo, il segnale DINA (Data In) che rappresenta il dato da scrivere in ingresso, il segnale di abilitazione per la scrittura e lettura WEA, che se pari a 1 abilita la scrittura e se pari a 0 abilita la lettura. ![[ramsingleport.jpg|500x300]]
 - Simple dual port, che abilita l'accesso duplice ovvero una scrittura ed una lettura contemporaneamente tramite un secondo segnale ENB. Non permette di fare due letture o due scritture in quanto si ha un solo segnale di uscita. La scrittura e lettura contemporanee necessitano di gestione di conflitti, di solito gestiti già dal circuito. ![[simpledpram.jpg|300x450]]
 - True dual port, che fondamentalmente permette ogni tipo di operazione, sia 2 scritture che 2 letture che una scrittura che una lettura. Anche qui ci sono conflitti da gestire in particolare, se voglio scrivere due valori diversi nello stesso indirizzo si ha una memorizzazione indefinita perciò la gestione degli indirizzi deve essere attenzionata. ![[truedpram.jpg|300x500]]
 
-## Struttara interna
-Guardiamo adesso la struttura interna di una RAM single port con profondità $N$, con indirizzi a $x=log_2(N)$ bit. Il suo circuito di controllo comprende un decoder per l'indirizzo ed una porzione di circuito che si occupa dei segnali di abilitazione. Il decoder è la componente circuitale che garantisce l'accesso esclusivamente sulla parola in posizione indicata, si noti che l'uscita del decoder comanda due interruttori/transistor che permettono di collegare la word specifica con l'uscita. ![[structspr.jpg]] Si ha quindi la sicurezza di chiudere un interruttore in scrittura o lettura per una sola word. 
+## Struttura interna
+Guardiamo adesso la struttura interna di una RAM single port con profondità $N$, con indirizzi a $x=log_2(N)$ bit. Il suo circuito di controllo comprende un decoder per l'indirizzo ed una porzione di circuito che si occupa dei segnali di abilitazione. Il decoder è la componente circuitale che garantisce l'accesso esclusivamente sulla parola in posizione indicata, si noti che l'uscita del decoder comanda due interruttori/transistor che permettono di collegare la word specifica con l'uscita. ![[structspr.jpg|800x400]] Si ha quindi la sicurezza di chiudere un interruttore in scrittura o lettura per una sola word. 
 Per una true dual port si impiegano 2 decoder e due datain e dataout.
 Una singola dataword è composta da $k$ celle di memoria (non flip flop o latch!),che può essere realizzata in due modi:
 1. Statica - SRAM,  ogni cella di memoria è formata da 2 inverter retroazionati quindi si hanno in totale 4 interruttori.

@@ -5,6 +5,27 @@ updated: 2023-04-26 11:14:42
 ---
 #elettronica 
 [[VHDL]]
+# VHDL per circuiti sequenziali
+Nel realizzare circuiti sequenziali in VHDL, si fa riferimento allo statement <font color=purple>process</font>, statement concorrente che incapsula istruzioni sequenziali. La sintassi è la seguente:
+``` VHDL
+optional_label: process(sensitivity list)
+			 begin
+				[...]
+			end process [optional_label];
+```
+La sensitibity list, è una lista che contiene i segnali di ingresso o porte di ingresso, che in maniera diretta vanno ad influenzare lo stato di qualche altro segnale o di porte d'uscita. Una sensitivity list vuota corrisponde ad una sensitivity list contenente tutti i segnali e porte d'ingresso.
+All'interno del process si può utilizzare lo statement sequenziale <font color=orange>if then else</font>, uguale ad un if di Java, solo che in VHDL l'ordine corretto è importante in quanto influenza la sintesi. È importante coprire tutte le condizioni, per evitare che una condizione non coperta venga interpretata dal sintetizzatore come attivazione di una funzionalità di memoria. Esempio:
+``` VHDL
+process
+begin
+	if(a='0')then
+		b <= c and d;
+	else -- else ricopre tutti gli altri stati possibili STD_LOGIC non solo '1'
+	 b <= ((not c) and (not d));
+	end if;
+end process;
+```
+
 ## Esempio latch positivo
 ``` VHDL
 library IEEE;
@@ -97,7 +118,7 @@ begin
 	end process;
 end behav;
 ```
-L'ordine tra preset e clear è arbitrario, in quanto hanno stessa priorità se sono asincroni mentre sincroni sono errati in partenza.
+> L'ordine tra preset e clear è arbitrario, in quanto hanno stessa priorità se sono asincroni mentre sincroni sono errati in partenza.
 
 Esiste anche la versione sincrona con il segnale di clock di preset e clear ovvero reset e set. Se ho un flip flop sensibile a fronti di salita allora anche il reset si attiverà quando il clock è alto. Il process associato al reset sincrono:
 ```VHDL

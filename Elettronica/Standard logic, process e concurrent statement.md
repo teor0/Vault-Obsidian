@@ -6,10 +6,10 @@ updated: 2023-02-15 19:59:42
 #elettronica 
 [[VHDL]]
 # Concetto di driver e tipo standard logic
-Fino ad ora si è fatto riferimento ad informazioni di tipo bit o bit_vector, ma questo dal punto di vista elettronico è errato in quanto, nei circuiti si fa riferimento a tensioni con logica positiva. Consideriamo adesso una parte di un circuito logico all'interno del quale passa l'informazione. Tale punto è detto driver e viene rappresentato come segue:
-![[driver.jpg]]
+Fino ad ora si è fatto riferimento ad informazioni di tipo bit o bit_vector, ma questo dal punto di vista elettronico è errato in quanto nei circuiti si fa riferimento a tensioni con logica positiva. Consideriamo adesso una parte di un circuito logico all'interno del quale passa l'informazione. Tale punto è detto driver e viene rappresentato come segue:
+![[driver.jpg|300x200]]
 Supponiamo di trovarci nella situazione in cui ci siano 2 informazioni differenti collegate:
-![[conflittodriver.jpg]]
+![[conflittodriver.jpg|400x400]]
 Si ha un cortocircuito in quanto si sta cercando di collegare 2 valori di tensione diversi. L'informazione intermedia non può essere rappresentata, questo a livello concettuale in VHDL si traduce nel tipo <font color=blue>Standard Logic</font>, che consente di rappresentare i dati mediante valori particolari anche detti non idealità. I segnali di tipo std_logic possono assumere diversi valori:
 - 0
 - 1
@@ -17,12 +17,12 @@ Si ha un cortocircuito in quanto si sta cercando di collegare 2 valori di tensio
 - H: weak high
 - L: weak low
 - Z: High impedance, ovvero segnale non collegato ^22897a
-- -: don'tcare
+- -: don't care
 - U: uninitialized, non inizializzato presente solo nelle simulazioni
 
 Il valore X è la risposta al problema che si è visto. Un'altra situazione analoga può essere quando ci sono dei rumori all'interno del circuito che vanno a modificare i valori di tensione. Quando si considera un circuito ideale, il valore 1 corrisponde ad 1 Volt, mentre in un circuito reale la tensione non rimane fissa ad 1 Volt e scende al di sotto. Questo viene indicato tramite H e stessa cosa vale, in senso opposto per L.
 È possibile individuare una funzione di risoluzione che consente di stabilire il valore di un segnale A in tutte le condizioni di B e C nel momento in cui sono definiti come segnali di tipo std_logic:
-![[tabstdlog.jpg]]
+![[tabstdlog.jpg|500x400]]
 
 Infine per utilizzare il tipo std_logic all'interno di VHDL occorre "importare" la libreria IEEE all'inizio del codice tramite:
 ```VHDL
@@ -44,8 +44,8 @@ t=30ns \implies Cin<=\ '1' \\
 t=50ns \implies A,B,Cin<=\ '0'
 \end{align}$
 
-![[diagramsig.jpg]]
-![[outsigdiag.jpg]]
+![[diagramsig.jpg|300x400]]
+![[outsigdiag.jpg|400x300]]
 A livello di codice in VHDL, le forme d'onda si descrivono tramite un particolare tipo di file che prende il nome test bench. Il test bench non è qualcosa di fisico per cui non ha un'interfaccia con il mondo esterno. La sintassi di VHDL impone di usare le entity per cui quando viene creato un test bench viene utilizzata una entity vuota.
 
 ---

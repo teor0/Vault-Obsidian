@@ -33,6 +33,8 @@ ma ci si può muovere anche tra le parole e WORD. Per WORD si intendono stringhe
 - B, vai all'inizio della WORD precedente
 - e, vai alla fine della prossima parola
 - E, vai alla fine della prossima WORD
+- G, porta a fine documento
+- gg, porta ad inizio
 
 a questi comandi si può aggiungere il numero di volte che si vuole eseguire. Quindi ad esempio se mi trovo in normal mode e scrivo 150B, torno indietro di 150 WORD.
 

@@ -19,10 +19,10 @@ I circuiti progettati fino ad ora sono semi custom basati su array.
 # Mosfet
 Il primo passo per entrare nel mondo full custom è quello di individuare a livello circuitale un componente che si presti bene a rappresentare l'informazione digitale, ovvero il bit. Esistono diversi tipi di dispositivi digitali quali:
 - Il <font color=orange>diodo</font>: lavora in 2 modalità ON e OFF, dove ON conduce la corrente ed è polarizzato direttamente, OFF non conduce corrente ed è polarizzato inversamente. Questi 2 stati di polarizzazione possono facilemente rappresentare i bit 0 e 1.
-- Il <font color=orange>transistor</font>: di ci sono 3 tipi, il transistore a giunzione bipolare (BFT), il transistore ad effetto di campo (FET) ed il transistore ad effetto di campo basato su una giunzione di metallo (MOSFET).
+- Il <font color=orange>transistor</font>: di cui ci sono 3 tipi, il transistore a giunzione bipolare (BFT), il transistore ad effetto di campo (FET) ed il transistore ad effetto di campo basato su una giunzione di metallo (MOSFET).
 
 Il <font color=blue>MOSFET</font> può essere utilizzato sia per applicazioni analogiche in cui si comporta come amplificatore di tensione o corrente, sia in applicazioni digitali dove può assumere anche il ruolo di interruttore che lavora a 2 stati, ON e OFF. Per lavorare bene il MOSFET ha bisogno di sfruttare tutte e tre le sue proprietà ovvero, metallo (conduttore), ossido (isolante) e semiconduttore. Graficamente gli interruttori sono schematizzati come segue:
-![[interruttori.jpg]]
+![[interruttori.jpg|300x300]]
 In particolare :
 - Quando un interruttore è OFF si ha: tensione massima e corrente pari a 0.
 - Quando un interruttore è ON si ha: tensione pari a 0 e corrente massima.

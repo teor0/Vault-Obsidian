@@ -37,7 +37,7 @@ architecture struct of RCA4_v2 is
 		Cout <= C(4);
 	end struct;
 ```
-L'istruzione `C(0) <= Cin` la posso scrivere dove voglio noon ha importanza la sua posizione.
+L'istruzione `C(0) <= Cin` la posso scrivere dove voglio non ha importanza la sua posizione.
 
 ---
 # Esempio tramite modulo comportamentale
@@ -66,13 +66,12 @@ end behav;
 
 ---
 # Esempio ripple-carry per numeri in complemento a 2
-Per utilizzare numeri in complemento a 2 cambiamo la configurazione in 5 full adder per il riporto del segno.
+Per utilizzare numeri in complemento a 2 cambiamo la configurazione in 5 full adder per il riporto del segno. In generale se faccio una somma con numeri a $n$ bit la somma sarà di $n+1$ bit.
 ```VHDL
 entity RCA4C2 is:
 	port(
 	A,B: in bit_vector(3 downto 0);
 	Cin: in bit;
-	Cout: out bit;
 	S: out bit_vector(4 downto 0);
 	)
 end RCA4C2;

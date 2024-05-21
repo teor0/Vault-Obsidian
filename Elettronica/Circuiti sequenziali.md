@@ -1,16 +1,15 @@
 ---
-tag: #elettronica 
 created: 2023-02-27 20:13:20
-updated: 2023-02-27 20:13:20
+tag: elettronica
 ---
 #elettronica 
 [[Soglia, dissipazione dinamica, tempi di risposta e margini di rumore]]
 # Circuiti sequenziali
-Prima di analizzare il comportamento di circuiti sequenziali è necessario introdurre un segnale molto nei circuiti digitali, ovvero il segnale di clock. Il segnale di clock, è un segnale periodico nel tempo identificato da un'onda quadra. L'attività del segnale di clock va avanti in modo indefinito nel tempo questo perché, in un sistema digitale esiste un componente (on board) specifico per la generazione di questo segnale. Il clock è descritto da un insieme i caratterestiche:
+Prima di analizzare il comportamento di circuiti sequenziali è necessario introdurre un segnale molto importante nei circuiti digitali, ovvero il segnale di clock. Il segnale di clock, è un segnale periodico nel tempo identificato da un'onda quadra. L'attività del segnale di clock va avanti in modo indefinito nel tempo questo perché, in un sistema digitale esiste un componente (on board) specifico per la generazione di questo segnale. Il clock è descritto da un insieme i caratteristiche:
 - Periodo (T): tempo che intercorre tra due eventi dello stesso tipo
 - Frequenza (f): dipende dal periodo in particolare $f={1\over T}$
 
-![[clock.jpg]]
+![[clock.jpg|700x150]]
 
 La differenza principale tra un circuito combinatorio ed un circuito sequenziale è il che, il circuito sequenziale è in grado rispondere a delle sollecitazioni ricevute in ingresso anche in funzione di ciò che è successo in passato. Per materializzare il "prima" e "dopo", è necessario aver conoscenza sullo scorrere del tempo e ciò avviene tramite il clock. Esistono diversi tipi di circuiti sequenziali caratterizzati dalle operazioni che devono svolgere e sono divisi in due diverse categorie:
 1. Di supporto ai circuiti combinatori in modo da trattare correttamente l'informazione sul tempo. Il più elementare dal punto di vista logico di circuito è il latch.
@@ -44,9 +43,9 @@ L'andamento del segnale Q viene sincronizzato agli eventi del segnale di clock, 
 ---
 ## Glitch ed impiego dei circuiti sequenziali
 Supponiamo di avere il seguente circuito logico, dove indichiamo con $\tau'$ il ritardo degli inverter e $\tau$ il ritardo del AND, sapendo che $\tau>\tau'$ data la composizione della porta AND. Andiamo perciò ad osservare il comportamento del circuito tenendo conto di tali ritardi.
-![[excircseq.jpg]]
-![[excircseqdiag.jpg]]
-Non tenendo conto dei ritardi ci si aspetta che y=0 ad ogni istante di tempo, in quanto il passaggio di stato $0\rightarrow 1\rightarrow 0$ avviene nello stesso instante e di conseguenza non viene percepito. Il ritardo della AND provoca però la variazione di stato sulla y, questo fenomeno è chiamato <font color=red>glitch/spike</font> ed è una commutazione inaspettata dal punto di vista logico. Per limitare gli effetti del glitch è necessario che la temporizzazione di y, sia fatta in modo da evitare i ritardi delle porte logiche, per fare ciò si sincronizzazno A,B e y ai fronti di salita del clock. 
+![[excircseq.jpg|500x150]]
+![[excircseqdiag.jpg|200x500]]
+Non tenendo conto dei ritardi ci si aspetta che y=0 ad ogni istante di tempo, in quanto il passaggio di stato $0\rightarrow 1\rightarrow 0$ avviene nello stesso instante e di conseguenza non viene percepito. Il ritardo della AND provoca però la variazione di stato sulla y, questo fenomeno è chiamato <font color=red>glitch/spike</font> ed è una commutazione inaspettata dal punto di vista logico. Per limitare gli effetti del glitch è necessario che la temporizzazione di y, sia fatta in modo da evitare i ritardi delle porte logiche, per fare ciò si sincronizzano A,B e y ai fronti di salita del clock. 
 L'uso dei flip flop, consente di specificare gli istanti di tempo in cui ogni elemento circuitale deve tenere in considerazione gli ingressi ricevuti, mascherando così i glitch.
 Andiamo a risolvere il glitch del circuito.
 ![[glickrisolto.jpg]]

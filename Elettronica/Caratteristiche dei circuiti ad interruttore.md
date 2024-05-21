@@ -8,13 +8,13 @@ updated: 2023-02-19 12:50:44
 [[Esercizi sulle regole di applicazione e capacità]]
 # Caratteristiche statistiche e dinamiche
 Si consideri l'inverter con le sue proprietà non ideali e schematizzato come segue: 
-![[capacita.jpg]]
+![[capacita.jpg|500x300]]
 le caratteristiche che si possono esaminare su qualsiasi circuito ad interruttori si dividono in 2 gruppi:
 1. <font color=purple>Caratteristiche statiche</font>, possono essere osservate quando gli ingressi del circuito sono stabili, ovvero quando il loro valore non cambia nel tempo.
 2.  <font color=purple>Caratteristiche dinamiche</font>, possono essere osservate durante la commutazione degli ingressi, ovvero cambiano valore. 
 
 ## Capacità in situazione statica e dinamica
-Supponiamo di essere in una fase di analisi delle caratteristiche statiche di un inverter, in cui I='0'. Essendo gli ingressi stabili, lo sarà anche $V_{out}$, ovvero i segnali del circuito si muovono con frequenza=$0MHz$. Quando le variazioni ai capi di un circuito avvengono con frequenza nulla, la capacità corrisponde ad un circuito aperto, questo perchè ad ogni capacità è associabile ad una impedenza ed in questa situazione è pari a: $\displaystyle\large z_{C_L}={1\over{j\omega C_L}}=\infty$ con $\omega=2\pi f$
+Supponiamo di essere in una fase di analisi delle caratteristiche statiche di un inverter, in cui I='0'. Essendo gli ingressi stabili, lo sarà anche $V_{out}$, ovvero i segnali del circuito si muovono con frequenza=$0MHz$. Quando le variazioni ai capi di un circuito avvengono con frequenza nulla, la capacità corrisponde ad un circuito aperto, questo perchè ad ogni capacità è associabile ad una impedenza ed in questa situazione è pari a: $\displaystyle z_{C_L}={1\over{j\omega C_L}}=\infty$ con $\omega=2\pi f$.
 Questo implica che nell'analisi statica del circuito $C_L=0$ per cui si è in una situazione ideale e la capacità equivale ad un circuito aperto.
 Quando gli ingressi commutano, lo farà anche l'uscita e la frequenza di commutazione dell'uscita determinerà l'impedenza associata alla capacità che sicuramente è $\neq\infty$, quindi la capacità va considerata.
 
@@ -38,16 +38,16 @@ La  dissipazione di potenza statica, si verifica quando gli ingressi del circuit
 ---
 # Fan-In
 Per trattare un'altra caratteristica statica riparliamo del concetto di FAN-IN, il numero massimo di ingressi rappresentabili dalla porta logica. Consideriamo una NAND a 4 ingressi e di non aver limitazioni per il FAN-IN. $f=\overline{a\land b\land c\land d}$
-![[nand4fanin.jpg|500x500]]
+![[nand4fanin.jpg|300x600]]
 La tabella degli stati sarà la seguente:
-![[tabnand4fanin.jpg|400x400]]
+![[tabnand4fanin.jpg|200x500]]
 Di queste 16 possibili combinazioni esaminiamo '0000' e '1111'. Nel caso in cui $I=0000$ il circuito utilizzando le resistenze equivalenti sarà:
-![[nand4resist.jpg|500x500]]
+![[nand4resist.jpg|300x600]]
 che può essere semplificato in
-![[simplenandrest1.jpg]]
+![[simplenandrest1.jpg|400x400]]
 Nel caso in cui si consideri il circuito come ideale $V_{out}=V_{DD}$, mentre nel caso in cui si consideri il circuito reale $\displaystyle V_{out}=V_{DD}-I'_{DD}{R_{ON}\over 4}$. In questo caso il comportamento non è peggiorato rispetto a quello dell'inverter.
 Nel caso in cui $I=1111$ il circuito nella versione semplificata è:
-![[simplenandrest2.jpg]]
+![[simplenandrest2.jpg|400x400]]
 Nel caso ideale $V_{out}=0V$, mentre nel caso reale la resistenza equivalente nella PDN è 4 volte maggiore e questo ha effetto sul valore di $V_{out}$ pari a $V_{out}=4R_{ON}I'_{DD}$ e questo valore è peggiore di quello di un inverter di circa 4 volte!
 Perciò all'aumentare degli ingressi non viene peggiorato il comportamento della porta per quanto riguarda il raggiungimento dello stato logico '1' in uscita, ma peggiora il comportamento in termini di tensione in uscita che rappresenta lo stato logico '0'. 
 > All'aumentare degli ingressi si crea deterioramento degli stati logici, ovvero le tensioni in uscita non raggiungono i valori nominali che ci si aspetta nel caso ideale.

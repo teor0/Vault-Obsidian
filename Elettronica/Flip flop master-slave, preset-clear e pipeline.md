@@ -9,7 +9,7 @@ updated: 2023-04-21 11:54:11
 Un flip flop master-slave viene realizzato collegando in cascata due latch,
 ![[ffmasterslave.jpg]]
 il principio con cui lavora il master-slave è il seguente: si utilizza un primo latch positivo ed un secondo latch negativo, dove mentre il 1° latch è aperto il 2° è chiuso e viceversa.
-Osservando il suo funzionamento come macroblocco, corrisponde ad un flip flop sensibile a fronti di discesa. Di conseguenza, un flip flop master-slave composta da latch negativo come master e latch positivo come slave, corrisponderà ad un flip flop sensibile a fronti di salita. 
+Osservando il suo funzionamento come macroblocco, corrisponde ad un flip flop sensibile a fronti di discesa. Di conseguenza, un flip flop master-slave composto da latch negativo come master e latch positivo come slave, corrisponderà ad un flip flop sensibile a fronti di salita. 
 Il diagramma di timing ideale del master-slave negativo è il seguente:
 ![[timingffms.jpg]]
 Da notare che a $t=0$, $Q=0$ in quanto si vuole sempre avere uno stato iniziale preciso quando si utilizzano circuiti sequenziali. A questo scopo vengono in aiuto dei segnali ausiliari, asincroni e prioritari che consento di forzare l'uscita dei circuiti sequenziali a '0' o '1'.
@@ -42,7 +42,7 @@ Gli utenti spostano i dati tramite penna USB tra un PC e l'altro. A $t=70$ ogni 
 - Anna impiega 100+30+30+20 min
 
 >I tempi in cui i PC lavorano ma non producono alcun risultato utili,  è detto <font color=red>latenza</font> (100 min).
->Il ritmo con cui vengono prodotti i risultati dopo la latenza si chiama <font color=red>throug put</font> (40 min).
+>Il ritmo con cui vengono prodotti i risultati dopo la latenza si chiama <font color=red>through put</font> (40 min).
 
 Non si raggiunge la prestazione della relazione parallela, ma si garantisce una velocità intermedia che può essere aumentata aumentando il numero di postazioni. Questa modalità di utilizzo delle risorse viene implementata per realizzare circuiti abbastanza veloci ma non eccessivamente costosi. I circuiti <font color=blue>pipeline</font> implementano in elettronica il concetto appena visto, utilizzando dei registri (penna USB) per introdurre degli step di elaborazione intermedi che producono un risultato valido.
 
