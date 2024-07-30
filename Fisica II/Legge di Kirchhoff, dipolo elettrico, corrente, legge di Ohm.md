@@ -31,10 +31,10 @@ Definiamo corrente come la quantità di carica $\Delta q$ che passa in un interv
 I semiconduttori hanno elettroni liberi e lacune, ovvero protoni che hanno segno positivo. Queste lacune hanno una velocità data dalla mobilità di lacuna. Si dicono lacune perché prima in quella posizione c'era un elettrone che lascia un vuoto e perciò dato il numero non elevato di elettroni si crea una lacuna. La velocità di lacuna è data da: $$\underline{u}_h=\mu_h\underline{E}$$
 La densità di corrente è data da: $$\begin{split}
 \underline{J}=\underline{J}_e+\underline{J}_h=\rho_{Ve}\cdot\underline{u}_e+\rho_{Vh}\cdot\underline{u}_h=-\rho_{Ve}\cdot\mu_e\underline{E}+\rho_{Vh}\cdot\mu_h\underline{E}\\
-=\underline{E}(-\rho_{Ve}\cdot\mu_e+\rho_{Vh}\cdot\mu_h)=(-N_e\cdot e\mu_e+N_h\cdot e\mu_h)=\sigma\underline{E}
+=\underline{E}(-\rho_{Ve}\cdot\mu_e+\rho_{Vh}\cdot\mu_h)=(N_e\cdot e\mu_e+N_h\cdot e\mu_h)=\sigma\underline{E}
 \end{split}$$
 
-Perciò $\large\sigma=e(-N_e\cdot\mu_e+N_h\cdot\mu_h)$, dove $N_e\ \text{e}\ N_h$ sono rispettivamente numero di elettroni e numero di lacune
+Perciò $\large\sigma=e(N_e\cdot\mu_e+N_h\cdot\mu_h)$, dove $N_e\ \text{e}\ N_h$ sono rispettivamente numero di elettroni e numero di lacune questo per i semiconduttori. Per i conduttori $\large\sigma=(N_e\cdot e\mu_e)$
 
 ---
 # Legge di Ohm 

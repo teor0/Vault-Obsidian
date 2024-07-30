@@ -28,7 +28,7 @@ In particolare: $cos(\theta_v-\theta_i)=cos\phi$ è detto <font color=orange>fat
 Per gli elementi passivi L,C e R, $cos\phi$ è compreso tra 0 e 1. Per gli elementi attivi $cos\phi<0$ quindi potenze negative possibili. 
 ## Potenza attiva, potenza apparente e potenza reattiva
 Se calcolo l'energia tra $t_0$ e $T$ dove $T$ è molto più grande del periodo allora $\displaystyle E(t_0,T)=\int^{T}_{t_0}p(\tau)d\tau$ la potenza media è pari $\displaystyle\lim_{T\rightarrow\inf}{E(t_0,T)\over T-t_0}$ ma essendo $T>>t_0$, $t_0=0\implies\displaystyle\lim_{T\rightarrow\inf}{E(0,T)\over T}$ dunque $\displaystyle p_{media}={1\over T}\int^{T}_{0}{V_mI_m\over 2}cos(\theta_v-\theta_i)dt+{1\over T}\int^{T}_{0}{V_mI_m\over 2}cos(2\omega t+\theta_v+\theta_i)dt=$
-il primo integrale non dipende dal tempo, mentre il secondo dipende da $t$ ed è sinusoidale dunque $p_{media}\displaystyle ={1\over T}{V_mI_m\over 2}cos\phi T={V_mI_m\over 2}cos\phi$ detta <font color=green>potenza media o potenza attiva</font>. In particolare $\displaystyle{V_mI_m\over 2}$ è la <font color=orange>potenza apparente</font>. 
+il primo integrale non dipende dal tempo, mentre il secondo dipende da $t$ ed è sinusoidale dunque $p_{media}\displaystyle ={1\over T}{V_mI_m\over 2}cos\phi T={V_mI_m\over 2}cos\phi$ detta <font color=green>potenza media o potenza attiva</font>. In particolare $\displaystyle{V_mI_m\over 2}$ è la <font color=orange>potenza apparente</font> mentre la potenza attiva è $\displaystyle P={V_mI_m\over 2}cos\phi$. 
 Quando potenza apparente pari a potenza attiva allora $cos\phi=1$ e vale solo per il resistore. Quando sia potenza apparente che potenza attiva sono pari a 0 allora si ha un conduttore o induttore.
 
 Riscrivendo $\theta_v+\theta_i=\theta_v+2\theta_i-\theta_i$ dunque $\displaystyle p(t)={V_mI_m\over 2}cos\phi+{V_mI_m\over 2}(2\omega t+\theta_v-\theta_i+2\theta_i)$ sia $\alpha=2\omega t+2\theta_i$ sia $\phi=\beta=\theta_v-\theta_i$ attraverso prostaferesi $cos(\alpha+\beta)=cos\alpha cos\beta-sen\alpha sen\beta$ dunque $\displaystyle p(t)={V_mI_m\over 2}cos\phi+{V_mI_m\over 2}(cos\alpha cos\beta-sen\alpha sen\beta)={V_mI_m\over 2}cos\phi+{V_mI_m\over 2}(cos\alpha cos\phi-sen\alpha sen\phi)=$
@@ -78,7 +78,7 @@ Preso un generico circuito in regime sinusoidale, ![[matrasf.jpg|400x200]] dove:
 essendo maglia singola la corrente è pari a $\displaystyle\overline{I}={\overline{V_g}\over R_g+jX_g+R_L+jX_L}={\overline{V_g}\over R_g+R_L+j(X_g+X_L)}$ dunque
 $\displaystyle P_{R_L}={1\over 2}(R_L+jX_L){|\overline{V_g}|^2\over (R_g+R_L)^2+[j(X_g+X_L)]^2}$
 per calcolare il massimo trasferimento di potenza devo fare le derivate parziali di $P_{R_L}$. La prima derivata è:
-$\displaystyle{\partial P_{R_L}\over\partial X_L}=0\implies {1\over2}|\overline{V_g}|^2{-2(X_g+X_L)R_L\over[(R_g+R_L)^2+(X_g+X_L)^2]^2}=0\implies$
+$\displaystyle{\partial P_{R_L}\over\partial X_L}=0\implies {1\over2}|\overline{V_g}|^2{-2(X_g+X_L)R_L\over[(R_g+R_L)^2+(X_g+X_L)^2]^2}=0$
 Un caso banale in cui il numeratore è pari a 0 è quando $\overline{V_g}^2=0$ oppure quando $R_L=0$ altrimenti per essere pari a 0 occorre che: 
 $-2(X_g+X_L)=0\implies X_L=-X_g$
 La seconda derivata è:
@@ -89,7 +89,7 @@ Sostituendo il risultato ottenuto nella prima derivata parziale, $R_g^2-R_L^2=0\
 
 ---
 # Rifasamento
-Preso un generatore reale di tensione attaccato ad una porta A-B ed un carico collegato a tale porta. La potenza complessa del generatore è pari a $\overline{S_{V_{g1}}}$ ha una fase $\phi_1$ mentre la potenza complessa del carico è $\overline{S_{V_{g2}}}$ con fase $\phi_2$ dove $\phi_2<\phi_1$. Per attuare il rifasamento attacco in parallelo un condensatore al carico alla porta A-B. In modo che $\overline{S_{V_{g1}}}+\overline{S_{C}}=\overline{S_{V_{g2}}}$
+Preso un generatore reale di tensione attaccato ad una porta A-B ed un carico collegato a tale porta. La potenza complessa del generatore è pari a $\overline{S_{V_{g1}}}$ con fase $\phi_1$ mentre la potenza complessa del carico è $\overline{S_{V_{g2}}}$ con fase $\phi_2$ dove $\phi_2<\phi_1$. Per attuare il rifasamento attacco in parallelo un condensatore al carico alla porta A-B. In modo che $\overline{S_{V_{g1}}}+\overline{S_{C}}=\overline{S_{V_{g2}}}$
 
 ---
 

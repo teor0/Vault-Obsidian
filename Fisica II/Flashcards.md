@@ -1,11 +1,11 @@
 #deckele
 Espressione della conducibilità
 ?
-La conducibilità rappresenta la possibilità che ci siano degli elettroni liberi nel mezzo per effetto del quale si produce la corrente. Partendo dalla densità di corrente: $J=J_e+J_h=\rho_{Ve}\underline{u}_e+\rho_{Vh}\underline{u}_h=-\rho_{Ve}m_e\underline{E}+\rho_{Vh}m_h\underline{E}=(-\rho_{Ve}m_e\rho_{Vh}m_h)\underline{E}=\sigma\underline{E}$ ottengo la conducibilità. Con $\underline{u}_e=-m_e\underline{E}$ velocità di deriva degli elettroni $m_e$ mobilità degli elettroni e analogamente per le lacune.
+La conducibilità rappresenta la possibilità che ci siano degli elettroni liberi nel mezzo per effetto del quale si produce la corrente. Partendo dalla densità di corrente: $J=J_e+J_h=\rho_{Ve}\underline{u}_e+\rho_{Vh}\underline{u}_h=-\rho_{Ve}m_e\underline{E}+\rho_{Vh}m_h\underline{E}=(-\rho_{Ve}m_e\rho_{Vh}m_h)\underline{E}=(N_e\cdot em_e+N_h\cdot em_h)\underline{E}=\sigma\underline{E}$ ottengo la conducibilità. Con $\underline{u}_e=-m_e\underline{E}$ velocità di deriva degli elettroni $m_e$ mobilità degli elettroni e analogamente per le lacune.
 
 Illustrare la forza di Lorentz
 ?
-La forza di Lorentz è una forza che agisce su una carica elettrica in movimento all'interno di un campo magnetico è ed pari a $F=Q(\underline{V}\times\underline{H})=\underline{F}_e+\underline{F}_{em}$
+La forza di Lorentz è una forza che agisce su una carica elettrica in movimento all'interno di un campo elettromagnetico è ed pari a $F=Q(\underline{E}+\underline{u}\times\underline{B})=\underline{F}_e+\underline{F}_{em}$
 
 Relazione tra corrente e densità di corrente
 ?
@@ -17,7 +17,7 @@ La legge di Coulomb esprime il campo generato da una carica: $\displaystyle\larg
 
 Illustrare la legge di Joule
 ?
-Per definizione la potenza è la variazione di energia nell'unità di tempo $\Delta P={\Delta W\over \Delta t}$ con $\Delta W=\underline{F}_e\cdot\Delta l_e+\underline{F}_h\cdot\Delta l_h$. Dunque $\Delta P=\underline{F}_e\cdot {\Delta l_e\over\Delta t}+\underline{F}_h\cdot {\Delta l_h\over\Delta t}=\underline{F}_e\cdot\underline{u}_e+\underline{F}_h\cdot\underline{u}_h=q_EEu_e+q_hEu_h=E(\rho_{ve}u_e+\rho_{vh}u_h)\Delta V=EJ\Delta V$ Dunque per un volume V la potenza è pari a $P=\iiint_V EJ dV$
+La legge di Joule esprime la potenza dissipata in un circuito. La potenza è la variazione di energia nell'unità di tempo $\Delta P={\Delta W\over \Delta t}$ con $\Delta W=\underline{F}_e\cdot\Delta l_e+\underline{F}_h\cdot\Delta l_h$. Dunque $\Delta P=\underline{F}_e\cdot {\Delta l_e\over\Delta t}+\underline{F}_h\cdot {\Delta l_h\over\Delta t}=\underline{F}_e\cdot\underline{u}_e+\underline{F}_h\cdot\underline{u}_h=q_EEu_e+q_hEu_h=E(\rho_{ve}u_e+\rho_{vh}u_h)\Delta V=EJ\Delta V$ Dunque per un volume V la potenza è pari a $P=\iiint_V EJ dV$
 
 Polarizzazione elettrica
 ?

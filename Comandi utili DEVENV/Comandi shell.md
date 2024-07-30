@@ -256,7 +256,3 @@ Per conoscere le directory di un particolare package oppure di tutti i package i
 	pacman -Ql #nomepacchetto
 	yay -Ql
 ```
-Per conoscere le dependencies di un package
-``` shell
-	pactree -r #nomepackage
-```

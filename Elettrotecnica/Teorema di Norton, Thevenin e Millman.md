@@ -59,9 +59,10 @@ La conversione tra generatori di Norton e Thevenin:
 In particolare per la conversione del generatore reale di tensione a circuito di Norton si ha che: $I_{CC}=I_N={V_g\over R_g}$
 mentre per la conversione del generatore reale di corrente a circuito di Thevenin si ha: $V_{CA}=V_{Th}=I_gR_g$
 
----
-## Potenza su Thevenin e Norton
-La massima potenza erogabile dal circuito alla porta A-B è $P_{Max}={V_{Th}I_N\over 4}$ quando la porta è chiusa da una resistenza $R_{AB}=R_{Th}=R_N$ $V_AB={V_{Th}\over 2}$ $I_{AB}={I_N\over 2}$ $P_{AB}=V_{AB}I_{AB}={V_{Th}I_N\over 4}$
+## Potenza massima su Thevenin e Norton e rendimento
+La potenza erogabile dal circuito alla porta A-B è $\displaystyle P_{R_L}=V_g^2{R_L\over (R_L+R_g)^2}$ ma la potenza massima erogabile è quando $R_L=R_g$ dunque $\displaystyle P_{Max}={V_g^2\over 4R_L}$. Dimostrazione: Imponendo che la derivata sia nulla, si ha che: $\displaystyle{\partial P_{R_L}\over\partial R_L}={I(R_L+R_g)^2 -2(R_L+R_g)R_L\over (R_L+R_g)^4}=0$ $\implies R_L^2+R_g^2+2R_LR_g-2R_L^2-2R_LR_g=0\implies R_L^2=R_g^2 \implies R_L=R_g$ Dunque data l'eguaglianza il massimo trasferimento di potenza è pari a $\displaystyle P_{Max}=V_g^2{R_L\over (R_L+R_g)^2}={V_g^2\over 4R_g}$. Il rendimento è il rapporto tra la potenza assorbita dal carico per mezzo del generatore e la potenza effettivamente generata dal generatore.  Con il massimo trasferimento di potenza abbiamo un rendimento del 50%. Se $R_L>R_g$ allora il rendimento è più elevato. Se $R_L<R_g$, allora la maggior parte della potenza finisce per essere dissipata nel generatore ed il rendimento è più basso. Il rendimento è dato dall'equazione: $\displaystyle\eta={P_{R_L}\over P_{V_g}}={V_{R_L}I\over V_gI}={V_g-V_{R_g}I\over V_gI}=1-{V_{R_g}I\over V_gI}=1-{R_gI\over V_g}$
+
+
 
 ---
 # Teorema di Millman

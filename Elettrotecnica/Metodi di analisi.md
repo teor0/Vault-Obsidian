@@ -3,7 +3,7 @@ tags: elettrotecnica,
 created: 2024-04-27 18:07:20
 updated: 2024-04-27 18:07:20
 ---
-[[Teorema di Norton, Thevenin e Millman]]]
+[[Teorema di Norton, Thevenin e Millman]]
 # Metodi di analisi
 Dato un circuito di $R$ rami e $N$ nodi, il suo comportamento è completamente determinato quando si conoscono tutte le $2R$ grandezze elettriche. Se considerassimo tutte le incognite contemporaneamente si arriverebbe a sistemi di equazioni troppo complicati. Per le reti senza memoria ovvero rapporto tra tensione e corrente costante, 
 si usano sistemi risolutivi algebrici per semplificare e risolvere i circuiti, o al massimo per trovare il minimo numero di equazioni necessarie per la soluzione.
@@ -22,7 +22,7 @@ Nel grafo di circuito si individuano:
 Dato un circuito, cerchiamo un insieme di KCL indipendenti scrivendo le KCL di tutti i nodi riportandole nella matrice d'incidenza $\hat{A}$. La matrice d'incidenza è legata al vettore $\overrightarrow{i}$ dall'equazione $\hat{A}\overrightarrow{i}=\overrightarrow{0}$. Si nota che la sommatoria di tutte le KCL è pari a 0, dunque non sono indipendenti. Preso un nodo qualsiasi come riferimento ottengo invece un insieme indipendente di N-1 KCL. Inoltre è un insieme complete dato che, una generica KCL associata ad una superficie chiusa $\sigma$ è data dalla somma delle KCL dei nodi contenuti in $\sigma$.
 "L'algoritmo" per il metodo dei nodi è dunque il seguente:
 - Scrivo le KCL dei nodi escluso il riferimento
-- Le KCL sono somme di correnti, le trasformo in equazioni nei potenziali nodali incogniti attraverso le relazioni constitutive dei rami
+- Le KCL sono somme di correnti, le trasformo in equazioni dei potenziali nodali incogniti attraverso le relazioni constitutive dei rami
 - Per rami resistivi si avrà che la corrente $i_{jk}$ che va dal nodo $j$ al nodo $k$ verrà scritta come $i_{jk}=G_{jk}(e_j-e_k)$ dove $e_j,e_k$ sono i potenziali dei nodi $j,k$ mentre $G_{jk}$ è il rispettivo valore di conduttanza del ramo $jk$.
 - Per i rami in cui sono presenti generatori sfrutto l'equazioni di vincolo dei generatori
 

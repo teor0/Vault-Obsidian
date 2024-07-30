@@ -1,66 +1,92 @@
 ---
-tags: automatica
-created: 2024-02-26 11:34:02
-updated: 2024-02-26 11:34:02
----
-# Definizione di automatica 
-Partiamo con il dare la definizione di automatica. 
->[!definizione] 
->L'automatica è una disciplina appartenente all'area dell'ingegneria dell'informazione che si occupa delle modalità attraverso le quali un dato fenomeno (un processo fisico o biologico) evolve nel tempo, perseguendo un dato obiettivo senza intervento del fattore umano.
-
-Il modello di afflusso-deflusso è il primo fenomeno che analizziamo. La figura descrive il modello ![[affldefl.jpg]]
-È un processo fisico dove un bacino che si riempie e si svuota d'acqua, tramite dighe, fiumi ecc. L'obiettivo è far sì che il serbatoio non vada a tracimare, causando inondazioni. Dunque la quantità che va monitorata è il livello di acqua corrente. Lo scopo dell'automatica è quello di sostituire il "controllore", una persona, con un sistema automatizzato. 
-Formalizzazione dell'obiettivo:
-> Per quanto riguarda l'altezza indicata con $h(t)$, si costruisce un intervallo di sicurezza tale che $h_{min}(t)<h(t)<h_{max}(t)$. Dove $h_{min}$ e $h_{max}$ vanno ad indicare i livelli estremi, in modo tale che il serbatoio non deve né riempirsi né svuotarsi troppo.
-
-Esempio di algoritmo: 
-``` 
-0. SARACINESCA := OFF
-1. IF((SARACINESCA==OFF) AND (h(t)>=hmax))
-		THEN SARACINESCA:=ON
-2. IF((SARACINESCA==ON) AND (h(t)<=hmin))
-	THEN SARACINESCA:=OFF
-3. GO TO 1
-```
-Descrivere il modello afflusso-deflusso consiste nel descrivere il <font color=blue>controllo a catena chiusa</font> (feedback/retroazione). Se considero il sistema come una serie di blocchi si ha: ![[catenachiusa.jpg]]
-Più in generale: ![[gencatenachiusa.jpg]]
-
+tags:
+  - automatica
+created: 18-06-2024
 ---
 # Sistema dinamico
-Un sistema dinamico è una rappresentazione astratta di una relazione fisica di causa-effetto. Gli ingressi sono le cause, mentre le uscite sono l'effetto. Un segnale è la rappresentazione formale nel tempo di una grandezza fisica. Definiamo adesso nel esempio del modello afflusso-deflusso alcuni segnali: 
-- Afflusso: segnale analogico, identificato con $q_i(t)$ è una funzione sul dominio dei tempi che restituisce un numero reale di unità di misura. Lega dunque il tempo ad una quantità dotata di una certa unità di misura dunque: $q_i: T\rightarrow R$
-- Saracinesca: segnale digitale/logico, identificata con $s(t)$ è una funzione del tipo: $S: T\rightarrow {ON,OFF}$
-- Altezza: segnale analogico, identificata con $h(t)$ misurata in metri, è del tipo: $h: T\rightarrow R$
+Un sistema dinamico è la rappresentazione (astratta) di un dato fenomeno caratterizzato dalla presenza di segnali che variano nel tempo e che interagiscono reciprocamente. Dal punto di vista fisico: un sistema dinamico è una rappresentazione astratta di una relazione fisica di causa-effetto. Gli ingressi sono le cause, mentre le uscite sono l'effetto. Un segnale è la rappresentazione formale nel tempo di una grandezza fisica.
+L'obiettivo sarà passare dalla narrazione del fenomeno alle equazioni che descrivono il sistema dinamico.
+Ad esempio il fenomeno dell'emigrazione di una popolazione di individui contiene due segnali:
+1. Italiani residenti in italia
+2. Italiani residenti all'estero
 
-Il dominio individua il tipo di sistema tra:
+Ogni anno una frazione di residenti in italia si trasferisce all'estero. Lo stato del sistema è la collezioni di variabili che descrive il fenomeno in maniera definitiva. Il dominio individua il tipo di sistema tra:
 1. Sistema dinamico a tempo continuo, $T=R$ analizzo con "continuità" un dato fenomeno.
 2. Sistema dinamico a tempo discreto, $T=Z$ analizzo un dato fenomeno co una "logica di campionamento".
 
-Esempio:
-![[leggebil.jpg]]
-Ipotizziamo che la saracinesca sia aperta (stato ON), e poniamo che la sezione del serbatoio sia costante pari a S e la sezione del rubinetto di uscita sia sempre costante pari a $S_0$. Poi poniamo che: 
-- Causa (ingresso) $\rightarrow$ afflusso
-- Effetto (uscita) $\rightarrow$ deflusso
+Assieme alle variabili dipendenti possono essere presenti le variabili indipendenti. Dato sempre lo stesso contesto, il modello può essere rappresentato tramite nodi ed archi, dove i nodi sono le variabili dipendenti o di stato: ![[sisisolato.png|500x200]]
+Il sistema d'esempio è un sistema isolato che rappresenta gli italiani residenti in Italia e gli italiani residenti al estero. Una variabile indipendente del sistema è il fenomeno dell'immigrazione. Le variabili indipendenti si rappresentano con un quadrato numerato. Siano:
+- $\alpha_{12}$ è la percentuale di cittadini che vanno al estero
+- $\alpha_{21}$ è la percentuale di cittadini che tornano in Italia
+- $\beta_{11}$ è il coefficiente di amplificazione.
 
-Enunciamo adesso la legge di bilancio: se l'acqua è un fluido ideale vale che la relazione afflusso-deflusso="variazione di volume di acqua nel serbatoio nell'unità di tempo" da cui, formalmente, si ha che se $v(t)=s\cdot h(t)\implies q_i(t)-q_o(t)={d\over dt}v(t) \implies q_i(t)-q_o(t)={d\over dt}(s\cdot h(t))\implies q_i(t)-q_o(t)=s{dh\over dt}$
-Per determinare l'uscita la sola conoscenza dell'ingresso non è sufficiente, bisogna conoscere l'altezza.
+La rappresentazione del sistema è la seguente: ![[esempiovariabili.png|400x400]] descriviamo il sistema a tempo discreto:
+- $x_1(k)$: italiani in Italia.
+- $x_2(k)$: italiani all'estero.
+- $u_1(k)$: immigrati di anno in anno.
+- $\alpha_{12}$: frazione di italiani che emigra (da un anno al successivo).
+- $\alpha_{21}$: frazione di emigrati che ritorna in Italia (da un anno al successivo).
+- $\beta_{11}$: posto per il momento a 1.
 
----
-# Principio energetico o legge di Bermulli
-$s{dh\over dt}=q_i(t)-q_o(t)$ anche se sembra un'equazione differenziale, non presenta l'altezza al netto dell'ingresso. Dunque tramite il principio energetico la trasformo in equazione differenziale che mi permette di trovare l'altezza. Ipotizziamo che il moto di deflusso sia laminare, ovvero senza turbolenze. Il principio energetico che si utilizza è il seguente: Lavoro delle forze di pressione atmosferica + energia cinetica del fluido + energia gravitazionale (Archimede) = costante dunque: $P+{1\over 2}p\cdot V^2+pgh=costante$.
-Applicando il principio al flusso in ingresso = flusso in uscita otteniamo che: $$P_1+{1\over 2}p\cdot V_1^2+pgh(t)=P_2+{1\over 2}\cdot V_2^2+pg\cdot 0\implies pgh(t)={1\over 2}p\cdot V_2^2$$ Ponendo $V_1<<V_2$ ottengo $V_1=0$ e apportando altre approssimazioni si avrà in fine che: $$\displaystyle{V_2^2(t)\over 2}=gh(t)$$
-Deflusso e velocità sono legate dalla relazione $q_o(t)=S_o\cdot V_2(t)=S_o\sqrt{2gh(t)}$ per cui otteniamo che $q_o(t)=S_o\sqrt{2gh(t)}$ e possiamo scrivere che: $$\begin{align}
-s{dh\over dt}=q_i(t)-S_o\sqrt{2gh(t)} \\
-q_o(t)=S_o\sqrt{2gh(t)}
-\end{align}$$
-Per ottenere il deflusso occorre risolvere l'equazione differenziale calcolando l'altezza e poi data l'altezza calcolare il deflusso.
+$$
+\begin{align}
+x_1(k+1)-x_1(k)=-\alpha_{12}x_1(k)+\alpha_{21}x_2(k)+u_{1(k)}\\
+x_2(k+1)-x_2(k)=\alpha_{12}x_1(k)-\alpha_{21}x_2(k)
+\end{align}
+$$
+I segni sono dati da gli archi e dal loro segno, segno meno uscenti segno più entranti. $u_1(k)$ influenza sia $x_1(k)\text{ che} x_2(k)$ nel corso del tempo. In maniera compatta: 
+$$
+\begin{align}
+x_1(k+1)=x_1(k)-\alpha_{12}x_1(k)+\alpha_{21}x_2(k)+u_{1(k)}\\
+x_2(k+1)=x_2(k)+\alpha_{12}x_1(k)-\alpha_{21}x_2(k)
+\end{align}
+\implies
+\begin{aligned}
+x_1(k+1)=(1-\alpha_{12})x_1(k)+\alpha_{21}x_2(k)+u_{1(k)} \\
+x_2(k+1)=(1-\alpha_{21})x_2(k)+\alpha_{12}x_1(k)
+\end{aligned}
+$$ 
+da notare come i secondi membri del sistema sono combinazioni lineari.
+Ricordando la definizione di stato si ha che: $$
+\begin{bmatrix}
+x_1(k)\\
+x_2(k)
+\end{bmatrix}\in N^2$$
+vettore che appartiene a $N^2$ perché sono numeri finiti. Vado quindi a realizzare una mappa lineare o applicazione lineare. Una mappa lineare è rappresentata univocamente da una matrice.
+Separando le variabili indipendenti da quelle dipendenti si ottengono si nota che si hanno 2 variabili quindi 2 colonne e 2 equazioni quindi 2 righe. La matrice che ne esce è la seguente:
+$$
+\begin{bmatrix}
+(1-\alpha_{21}) & \alpha_{21} \\ \alpha_{12} & (1-\alpha_{21})
+\end{bmatrix}
+\begin{bmatrix}
+x_1(k) \\ x_2(k)
+\end{bmatrix}
+$$
+per quanto riguarda $u_1(k)$ nella prima equazione ha coefficiente 1 mentre nella seconda equazione non compare dunque ha coefficiente 0. Il sistema può essere quindi riscritto in forma matriciale come:
+$$
+\begin{bmatrix}
+x_1(k+1) \\ x_2(k+1)
+\end{bmatrix}=
+\begin{bmatrix}
+(1-\alpha_{21}) & \alpha_{21} \\ \alpha_{12} & (1-\alpha_{21})
+\end{bmatrix}
+\begin{bmatrix}
+x_1(k) \\ x_2(k)
+\end{bmatrix}
++
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+u_1(k)
+$$
+dove $\begin{bmatrix}
+(1-\alpha_{21}) & \alpha_{21} \\ \alpha_{12} & (1-\alpha_{21})
+\end{bmatrix}=A \text{ e }\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}=B$ 
+Riscrivendo tutto si ha che: $x(k+1)=Ax(k)+Bu(k)$ ovvero <font color="#ff0000">l'equazione di stato</font>. Se il legame è lineare al interno del modello di decisione, genera questa rappresentazione dove A in genere è una matrice quadra, mentre B è una matrice rettangolare. Sono presenti anche le variabili osservabili che altro non sono che le misure, perché nei sistemi complessi gli stati non sono direttamente accessibili.
+Supponendo di misurare istante per istante i cittadini italiani e gli immigrati, rappresento le variabili osservabili con $y$.
 
->[!definizione] 
->Lo stato del sistema è una variabile intermedia necessaria per ottenere l'uscita noto l'ingresso. È necessario conoscere lo stato iniziale affinché dato ad esempio, la legge precedente si possa integrare per ottenere l'altezza. Dunque bisogna conoscere $h(t_0)=h_0$
 
-Perciò "l'algoritmo" sarà:
-1. Conoscere $q_i(t)$ per $t\ge t_0$
-2. Integrare l'equazione differenziale dell'altezza a partire da $h(t_0)=h_0$ e quindi determinare $h(t)$ per $t\ge t_0$
-3. Calcolare $q_o(t)=S_o\sqrt{2gh(t)}$ per $t\ge t_0$
 
----
+

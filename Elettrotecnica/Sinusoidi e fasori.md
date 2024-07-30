@@ -24,7 +24,7 @@ Il numero complesso $V=Ve^{j\omega t}$ rappresenta il fasore che corrisponde all
 - $arg\{V\}=\phi$
 
 La trasformazione da segnale in fasore è la seguente: $V_mcos(\omega t+\phi)=V_m\angle\phi$.
-Non essendo dipendenti dal tempo i fasori fanno perdere l'informazione nel tempo del segnale originale. Ma siccome lavoriamo con circuiti tempo invarianti e tutti i segnali condividono la stessa pulsazione, dal momento in cui il sistema è a regime, il tempo non ci interessa dato che i segnali di ogni componente differiranno al più di ampiezza e/o fase. Un circuito può essere analizzato nel dominio dei fasori quando tutti i segnali sono sinusoidi alla stessa pulsazione $\omega$, dunque i generatori lavorano tutti alla stessa pulsazione ed il circuito solo elementi lineari.
+Non essendo dipendenti dal tempo i fasori fanno perdere l'informazione nel tempo del segnale originale. Ma siccome lavoriamo con circuiti tempo invarianti e tutti i segnali condividono la stessa pulsazione, dal momento in cui il sistema è a regime, il tempo non ci interessa dato che i segnali di ogni componente differiranno al più di ampiezza e/o fase. Un circuito può essere analizzato nel dominio dei fasori quando tutti i segnali sono sinusoidi alla stessa pulsazione $\omega$, dunque i generatori lavorano tutti alla stessa pulsazione ed il circuito ha solo elementi lineari.
 
 ## Proprietà dei fasori
 <font color=orange>Linearità</font>: 
