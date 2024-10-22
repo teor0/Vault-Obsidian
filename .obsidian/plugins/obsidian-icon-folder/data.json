@@ -1,0 +1,71 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "iconColor": "#0431b9",
+    "recentlyUsedIcons": [
+      "IcFolder",
+      "IcFovariant",
+      "IcPngvariant",
+      "Mi048Folder",
+      "IcFivariant"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [
+      {
+        "icon": "IcPngvariant",
+        "rule": "Pictures/Images/kernel-user-space.png\\/[\\w\\d\\s]+\\.(?:\\w+\\.)*\\w+",
+        "for": "files",
+        "order": 0,
+        "useFilePath": true
+      },
+      {
+        "icon": "IcPngvariant",
+        "rule": "Pictures/Images/inode.png\\/[\\w\\d\\s]+\\.(?:\\w+\\.)*\\w+",
+        "for": "files",
+        "order": 1,
+        "useFilePath": true
+      },
+      {
+        "icon": "IcPngvariant",
+        "rule": "Pictures/Images/file-system-tree.png\\/[\\w\\d\\s]+\\.(?:\\w+\\.)*\\w+",
+        "for": "files",
+        "order": 2,
+        "useFilePath": true
+      }
+    ],
+    "extraPadding": {
+      "top": 2,
+      "right": 2,
+      "bottom": 2,
+      "left": 2
+    },
+    "extraMargin": {
+      "top": 2,
+      "right": 2,
+      "bottom": 2,
+      "left": 2
+    },
+    "emojiStyle": "native",
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInFrontmatterEnabled": false,
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconIdentifier": ":",
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsInLinksEnabled": true,
+    "debugMode": false,
+    "lucideIconPackType": "native"
+  },
+  "Linux": "IcFovariant",
+  "Pictures/Images": "IcPngvariant",
+  "Elettronica": "IcFolder",
+  "Basi di dati": "IcFolder",
+  "Basi di dati/Esercitazioni": "IcFovariant",
+  "Elettronica/Esempi ed esercizi": "IcFovariant",
+  "FPics": "IcFolder"
+}
